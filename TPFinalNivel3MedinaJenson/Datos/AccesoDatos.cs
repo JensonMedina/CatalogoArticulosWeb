@@ -18,18 +18,13 @@ namespace Datos
         }
         public AccesoDatos()
         {
-            Conexion = new SqlConnection("server=.\\SQLEXPRESS; database=POKEDEX_DB; integrated security=true");
+            Conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_WEB_DB; integrated security=true");
             Comando = new SqlCommand();
         }
-        public void setQuery(string Consulta)
+        public void SetConsulta(string Consulta)
         {
             Comando.CommandType = System.Data.CommandType.Text;
             Comando.CommandText = Consulta;
-        }
-        public void setSP(string Sp)
-        {
-            Comando.CommandType = System.Data.CommandType.StoredProcedure;
-            Comando.CommandText = Sp;
         }
         public void EjecutarLectura()
         {
@@ -71,7 +66,7 @@ namespace Datos
             }
         }
 
-        public void setParametros(string nombre, object valor)
+        public void SetParametros(string nombre, object valor)
         {
             Comando.Parameters.AddWithValue(nombre, valor);
         }
