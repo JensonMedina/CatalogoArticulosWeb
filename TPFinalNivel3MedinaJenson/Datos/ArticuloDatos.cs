@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,13 +10,19 @@ namespace Datos
 {
     public class ArticuloDatos
     {
-        public List<Articulo> Listar()
+        public List<Articulo> Listar(int? id = null)
         {
             AccesoDatos Datos = new AccesoDatos();
             List<Articulo> Lista = new List<Articulo>();
             try
             {
                 string Consulta = "select A.Id, A.Codigo, A.Nombre, A.Descripcion, C.Descripcion as Categoria, M.Descripcion as Marca, A.Precio, A.IdCategoria, A.IdMarca, A.ImagenUrl Imagen from ARTICULOS A, CATEGORIAS C, MARCAS M where A.IdMarca = M.Id And A.IdCategoria = C.Id";
+                
+                if (id.HasValue)
+                {
+                    Consulta += " AND A.Id = @IdArticulo";
+                    Datos.SetParametros("@IdArticulo", id.Value);
+                }
                 Datos.SetConsulta(Consulta);
                 Datos.EjecutarLectura();
                 while (Datos.lector.Read())
@@ -47,6 +54,7 @@ namespace Datos
                 Datos.CerrarConexion();
             }
         }
+
         public void AgregarArticulo(Articulo Nuevo)
         {
             AccesoDatos Datos = new AccesoDatos();

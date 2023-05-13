@@ -11,7 +11,7 @@ namespace UI
 {
 
 
-    public partial class MasterPage
+    public partial class AdminMasterPage
     {
 
         /// <summary>
@@ -31,24 +31,6 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
-        /// <summary>
-        /// txtFiltroRapido control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFiltroRapido;
-
-        /// <summary>
-        /// btnBuscarFiltroRapido control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscarFiltroRapido;
 
         /// <summary>
         /// ContentPlaceHolder1 control.
