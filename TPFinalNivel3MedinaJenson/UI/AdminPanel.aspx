@@ -24,7 +24,7 @@
 
     <div class="row mb-5">
         <div class="col">
-             <div class="mb-3">
+            <div class="mb-3">
                 <asp:Label Text="Codigo" CssClass="form-label" runat="server" />
                 <asp:TextBox ID="txtCodigo" CssClass="form-control" runat="server" />
             </div>
@@ -55,7 +55,7 @@
                 <input type="file" id="txtImagen" runat="server" class="form-control" />
             </div>
             <asp:Image ID="imgArticulo" ImageUrl="./imagenes/placeholder.png"
-                runat="server" CssClass="img-fluid mb-3" Width="600px" Height="300px"/>
+                runat="server" CssClass="img-fluid mb-3" Width="600px" Height="300px" />
         </div>
     </div>
 
@@ -63,15 +63,38 @@
         <div class="col">
             <asp:Button ID="btnAgregar" OnClick="btnAgregar_Click" CssClass="btn btn-primary" runat="server" Text="Agregar" />
         </div>
+        <%if (Id != null)
+            { %>
         <div class="col">
             <asp:Button ID="btnModificar" OnClick="btnModificar_Click" CssClass="btn btn-warning" runat="server" Text="Modificar" />
         </div>
         <div class="col">
-            <asp:Button ID="btnEliminar" OnClick="btnEliminar_Click" CssClass="btn btn-danger" runat="server" Text="Eliminar" />
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
+           
+           
+            <div class="modal" id="myModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Eliminar articulo</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>¿Esta seguro de eliminar definitivamente este articulo?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <asp:Button ID="btnEliminar" OnClick="btnEliminar_Click" CssClass="btn btn-primary" runat="server" Text="Eliminar" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
-        
-        
-        
+        <%} %>
+        <div class="col">
+            <asp:Button ID="btnLimpiar" OnClick="btnLimpiar_Click" CssClass="btn btn-secondary" runat="server" Text="Limpiar" />
+        </div>
     </div>
 
 

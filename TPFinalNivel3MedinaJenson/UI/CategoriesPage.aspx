@@ -1,11 +1,28 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="HomePage.aspx.cs" Inherits="UI.HomePage" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="CategoriesPage.aspx.cs" Inherits="UI.CategoriesPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-   
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>Este es el home</h1>
+
+    <h1>Aca voy a tirar la magia para filtras las busquedas</h1>
+
+
+    <div class="row mt-5 mb-5">
+        <div class="col">
+            <asp:DropDownList ID="ddlCampo" CssClass="form-select" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
+        </div>
+        <div class="col">
+            <asp:DropDownList ID="ddlCriterio" ClientIDMode="Static" CssClass="form-select" runat="server"></asp:DropDownList>
+        </div>
+        <div class="col">
+            <asp:TextBox ID="txtFiltro" ClientIDMode="Static" CssClass="form-control" runat="server"></asp:TextBox>
+        </div>
+        <div class="col">
+            <asp:Button ID="btnBuscar" CssClass="btn btn-primary" OnClientClick='return validar("#<%ddlCriterio.ID%>", "#<%txtFiltro.ID%>");' OnClick="btnBuscar_Click"  runat="server" Text="Buscar" />
+        </div>
+    </div>
+
+
     <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
         <asp:Repeater ID="repRep" runat="server">
             <ItemTemplate>
@@ -30,5 +47,6 @@
             </ItemTemplate>
         </asp:Repeater>
     </div>
+
 
 </asp:Content>

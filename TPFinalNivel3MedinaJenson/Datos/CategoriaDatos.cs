@@ -9,13 +9,18 @@ namespace Datos
 {
     public class CategoriaDatos
     {
-        public List<Categoria>Listar()
+        public List<Categoria>Listar(int? id = null)
         {
             AccesoDatos Datos = new AccesoDatos();
             List<Categoria> ListaCategorias = new List<Categoria>();
             try
             {
                 string Consulta = "select Id, Descripcion from CATEGORIAS";
+                if (id.HasValue)
+                {
+                    Consulta += " where Id = @IdCategoria";
+                    Datos.SetParametros("@IdCategoria", id.Value);
+                }
                 Datos.SetConsulta(Consulta);
                 Datos.EjecutarLectura();
                 while (Datos.lector.Read())

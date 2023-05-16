@@ -16,7 +16,8 @@ namespace Negocio
                 using (WebClient client = new WebClient())
                 {
                     // Realiza una petición HTTP a la URL de la imagen
-                    client.DownloadData(imageUrl);
+                    if (imageUrl.ToUpper().Contains("HTTPS")) { }
+                        client.DownloadData(imageUrl);
                     return true; // La imagen se carga correctamente
                 }
             }
@@ -25,5 +26,6 @@ namespace Negocio
                 return false; // La imagen no se carga correctamente
             }
         }
+
     }
 }

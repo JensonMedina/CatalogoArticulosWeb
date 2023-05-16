@@ -10,7 +10,7 @@ namespace Datos
 {
     public class ArticuloDatos
     {
-        public List<Articulo> Listar(int? id = null)
+        public List<Articulo> Listar(int? id = null, int? idCat = null)
         {
             AccesoDatos Datos = new AccesoDatos();
             List<Articulo> Lista = new List<Articulo>();
@@ -22,6 +22,11 @@ namespace Datos
                 {
                     Consulta += " AND A.Id = @IdArticulo";
                     Datos.SetParametros("@IdArticulo", id.Value);
+                }
+                if (idCat.HasValue)
+                {
+                    Consulta += " And A.IdCategoria = @IdCat";
+                    Datos.SetParametros("@IdCat", idCat.Value);
                 }
                 Datos.SetConsulta(Consulta);
                 Datos.EjecutarLectura();
@@ -128,7 +133,7 @@ namespace Datos
                 Datos.CerrarConexion();
             }
         }
-        public List<Articulo>Filtrar(string Campo, string Criterio, string Filtro)
+        public List<Articulo>Filtrar(string Campo, string Criterio, string Filtro, int? Id)
         {
             AccesoDatos Datos = new AccesoDatos();
             List<Articulo> Lista = new List<Articulo>();
@@ -194,6 +199,11 @@ namespace Datos
                             Consulta += "C.Descripcion like '%" + Filtro + "%'";
                             break;
                     }
+                }
+                if (Id.HasValue)
+                {
+                    Consulta += " And A.IdCategoria = @IdCat";
+                    Datos.SetParametros("@IdCat", Id.Value);
                 }
                 Datos.SetConsulta(Consulta);
                 Datos.EjecutarLectura();

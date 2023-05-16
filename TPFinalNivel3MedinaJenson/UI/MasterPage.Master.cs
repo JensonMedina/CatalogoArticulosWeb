@@ -14,18 +14,14 @@ namespace UI
         public List<Categoria> ListaCategorias { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            try
             {
                 CategoriaDatos Categoria = new CategoriaDatos();
                 ListaCategorias = Categoria.Listar();
-
-                try
-                {
-                }
-                catch (Exception ex)
-                {
-                    Session.Add("error", ex.ToString());
-                }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex.ToString());
             }
         }
     }
